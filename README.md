@@ -1,82 +1,51 @@
-# Ruhaan Gupta — Athlete Profile Site
+# Ruhaan Gupta — 10m Air Pistol
 
-A single-page site built from your NRAI/Doon School shooting record. Dark,
-range-inspired design; the hero target diagram plots your four headline
-results as actual "shots." Everything is in `index.html` (styles and
-script are embedded), plus `favicon.svg`, `robots.txt`, and `sitemap.xml`
-for search engines.
+Athlete profile site for Ruhaan Gupta, NRAI "Renowned Shot" and member of
+The Doon School Shooting Team. Live at **https://ruhaan599.github.io/**.
 
-## 1. Before you publish — edit these 3 things
+It's a single static page with no build step and no frameworks. Everything
+lives in `index.html` (HTML, CSS and vanilla JS), so GitHub Pages serves it
+exactly as it is.
 
-1. **Your GitHub Pages URL** — replace `https://your-username.github.io/`
-   in three places: `index.html` (the `<link rel="canonical">`, the two
-   `og:url` / JSON-LD `url` fields), `robots.txt`, and `sitemap.xml`.
-   Once you know your real URL (step 3 below), a find-and-replace across
-   these files takes a minute.
-2. **Contact email** — in `index.html`, search for `ruhaan@example.com`
-   and swap in a real address (or delete the Contact section if you'd
-   rather not list one).
-3. **A photo (optional)** — the site currently uses no photography, only
-   the SVG target diagram. If you want a real photo on the range, add an
-   `<img>` in the hero and I'm happy to help place it.
+## What's on the page
 
-## 2. Publish with GitHub Pages
+| Section | What it does |
+| --- | --- |
+| **Hero** | A live ISSF 10m air pistol target. Visitors click (or tap) to fire, and each shot is scored in decimals from the real target geometry. The aim drifts slightly, like a real hold. |
+| **01 Record** | Scroll-driven story. A sticky target plots each result (state → North Zone MQS → Renowned Shot → inter-school circuit) as a step toward the centre. |
+| **02 Event** | The sport's fixed numbers (10 m, 4.5 mm pellet, 11.5 mm ten-ring, 60 shots, 75 min, 500 g trigger), animated as they come into view. |
+| **03 Range** | A playable simulator. An open-sight view (front post in the rear notch, target soft in the distance) with a breath-hold mechanic: **press and hold** to settle, **release** to break the shot. An electronic-scoring monitor zooms to the group, marks the mean point of impact and totals a 10-shot series. Your best series is saved in the browser. Sound is optional. |
+| **04 Discipline** | Trigger control, breath and pulse, and composure, each with a small animated graphic. |
+| **05 Next** | What's done, what's next, and what comes eventually. |
+| **06 Contact** | Email link plus a copy-to-clipboard button. |
 
-1. Create a new repository on GitHub — e.g. `ruhaan-gupta-shooting`
-   (or name it `your-username.github.io` if you want it at the bare
-   root of your GitHub domain instead of a subpath).
-2. Upload the contents of this folder to the repository (drag-and-drop
-   on github.com works, or via git — see below).
-3. In the repo, go to **Settings → Pages**. Under "Build and
-   deployment," set **Source** to "Deploy from a branch," branch
-   `main`, folder `/ (root)`. Save.
-4. GitHub gives you a live URL within a minute or two, typically:
-   - `https://your-username.github.io/ruhaan-gupta-shooting/` (project repo), or
-   - `https://your-username.github.io/` (if the repo is named `your-username.github.io`)
-5. Go back and do the find-and-replace from step 1 with your real URL,
-   commit, and the site updates automatically.
-
-### Via git (command line)
-
-```bash
-git init
-git add .
-git commit -m "Launch athlete profile site"
-git branch -M main
-git remote add origin https://github.com/your-username/ruhaan-gupta-shooting.git
-git push -u origin main
-```
-
-Then enable Pages as in step 3 above.
-
-## 3. Getting found by Google and AI search
-
-Publishing the page is step one — indexing and AI-answer visibility take
-a bit longer and aren't fully in your control, but these move it faster:
-
-- **Submit the URL to Google Search Console** (search.google.com/search-console).
-  Add your site as a property, verify ownership, then submit
-  `sitemap.xml`. This is the single biggest lever for getting indexed
-  in days rather than weeks.
-- **Get it linked from somewhere else** — a mention in a Doon School
-  page, an NRAI results page, an Instagram bio link, a LinkedIn profile.
-  Search engines (and the crawlers behind AI answers) weight pages more
-  when other real pages point to them.
-- **Structured data is already in place** — the page includes a
-  schema.org `Person` block (name, awards, team, school) in the page
-  `<head>`. This is what lets Google's rich results and AI systems parse
-  "who is this and what have they done" reliably rather than guessing
-  from prose.
-- Realistically: expect indexing within days to a couple of weeks after
-  submission, and it can take longer for AI-generated answers
-  specifically to pick it up, since those often lag standard search
-  indexing.
+The page also has a custom sight cursor on desktop, a scroll progress bar,
+a full-screen mobile menu, scroll reveals and film grain. Everything respects
+`prefers-reduced-motion`, works with a keyboard (Space or Enter fires in the
+simulator) and fits screens down to 320 px wide.
 
 ## Files
 
 ```
-index.html    — the site (HTML + CSS + JS in one file)
-favicon.svg   — browser tab icon, same target mark as the header logo
-robots.txt    — tells crawlers the site is open to indexing
-sitemap.xml   — tells crawlers what pages exist
+index.html            the site
+404.html              "0.0 — MISS" page for broken links (GitHub Pages serves it automatically)
+favicon.svg           browser tab icon
+apple-touch-icon.png  iPhone/iPad home-screen icon
+og-image.png          1200×630 preview shown when the link is shared (WhatsApp, LinkedIn, X…)
+robots.txt            lets search engines crawl the site
+sitemap.xml           tells search engines which pages exist
 ```
+
+## Editing
+
+- **Results / text:** search `index.html` for the section (e.g. `RECORD`) and edit the copy inside each `<li class="step">`.
+- **Email:** search for `ruhaan.g13@gmail.com` (it appears in the contact section and the copy button's `data-email`).
+- **Colours:** the `:root { … }` block at the top of the `<style>` tag.
+- **Simulator difficulty:** in the script, `AMP_MIN` (hold wobble in mm) and the `gauss() * 2` trigger error inside `release()`. Lower numbers make it easier.
+- **Adding a photo:** a real range photo would sit well in the hero or the Discipline section. Drop it in the repo and add an `<img>`.
+
+## Getting found by Google and AI search
+
+- Structured data (a schema.org `Person` block with awards, team and school) is already in the page `<head>`.
+- Submit `https://ruhaan599.github.io/sitemap.xml` in [Google Search Console](https://search.google.com/search-console). This is the biggest single lever for fast indexing.
+- Get the link onto other real pages, such as a Doon School page, NRAI results, an Instagram bio or LinkedIn.
